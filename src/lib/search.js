@@ -80,6 +80,9 @@ class Search implements IWebSearch {
   configureStorage(storage: IStorageHandler) {
     this.storage = storage;
     this.reindex();
+    this.storage.localStorage.localData.on('data', (data) => {
+      this.reindex();
+    });
   }
 }
 
